@@ -6,7 +6,7 @@ const router = new Router();
 
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.findAll();
+    const products = await Product.findAll({ include: Category });
     res.send(products);
   } catch (e) {
     console.log(e.message);
