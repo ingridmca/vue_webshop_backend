@@ -3,6 +3,7 @@ const Category = require("../models").category;
 const Product = require("../models").product;
 
 const router = new Router();
+//Hello
 
 router.get("/", async (req, res) => {
   try {
