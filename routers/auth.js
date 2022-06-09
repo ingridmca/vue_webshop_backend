@@ -37,6 +37,15 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.get("/users", async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.send(users);
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+
 module.exports = router;
 
 //Have done nothing with the auth middleware!!!
