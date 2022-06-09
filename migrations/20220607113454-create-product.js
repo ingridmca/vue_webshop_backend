@@ -40,3 +40,5 @@ module.exports = {
     await queryInterface.dropTable("products");
   },
 };
+
+//npx sequelize-cli seed:generate --name reviews
