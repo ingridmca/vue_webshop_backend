@@ -1,9 +1,10 @@
 const Category = require("./models").category;
 const Product = require("./models").product;
+const Review =require("./models").review;
 
 const categoriesWithProducts = async () => {
   try {
-    const allProducts = await Product.findAll({ include: Category });
+    const allProducts = await Review.findAll({ include: Product });
     return allProducts;
   } catch (error) {
     console.log(error.message);

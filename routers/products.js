@@ -3,7 +3,6 @@ const Category = require("../models").category;
 const Product = require("../models").product;
 
 const router = new Router();
-//Hello
 
 router.get("/", async (req, res) => {
   try {
@@ -31,3 +30,7 @@ router.get("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+//npx sequelize-cli model:generate --name reviews --attributes name:string,rating:integer,comment:text
