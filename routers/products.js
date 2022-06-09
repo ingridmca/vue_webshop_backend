@@ -30,3 +30,7 @@ router.get("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+//npx sequelize-cli model:generate --name reviews --attributes name:string,rating:integer,comment:text

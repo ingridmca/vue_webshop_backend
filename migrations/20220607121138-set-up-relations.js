@@ -1,19 +1,32 @@
 "use strict";
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.addColumn("products", "categoryId", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "categories",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });
-  },
+    async up(queryInterface, Sequelize) {
+        await [
+            queryInterface.addColumn("products", "categoryId", {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: "categories",
+                    key: "id",
+                },
+                onUpdate: "CASCADE",
+                onDelete: "SET NULL",
+            }),
+            queryInterface.addColumn("reviews", "productId", {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: "products",
+                    key: "id",
+                },
+                onUpdate: "CASCADE",
+                onDelete: "SET NULL",
+            }),
+        ]
+    },
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.removeColumn("products", "categoryId");
-  },
+    async down(queryInterface, Sequelize) {
+        await [queryInterface.removeColumn("products", "categoryId"),
+            queryInterface.removeColumn("reviews", "productId"),
+        ]
+    },
 };
