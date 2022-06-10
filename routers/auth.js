@@ -2,6 +2,7 @@ const { Router } = require("express");
 const { toJWT, toData } = require("../auth/jwt");
 const User = require("../models").user;
 const authMiddleware = require("../auth/middleware");
+const bcrypt = require("bcrypt");
 
 const router = new Router();
 
@@ -19,8 +20,8 @@ router.post("/", async (req, res, next) => {
 
     if (!user) return res.status(400).send("Incorrect credentials");
 
-    //const match = bcrypt.compareSync(password, user.password);
-    const match = password === user.password;
+    const match = bcrypt.compareSync(password, user.password);
+    //const match = password === user.password;
 
     if (!match) {
       res.status(400).send("Incorrect credentials");
