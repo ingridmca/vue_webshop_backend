@@ -8,6 +8,7 @@ const router = new Router();
 router.post("/", async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
 
     // find a user with this email
     const user = await User.findOne({
@@ -18,7 +19,8 @@ router.post("/", async (req, res, next) => {
 
     if (!user) return res.status(400).send("Incorrect credentials");
 
-    const match = bcrypt.compareSync(password, user.password);
+    //const match = bcrypt.compareSync(password, user.password);
+    const match = password === user.password;
 
     if (!match) {
       res.status(400).send("Incorrect credentials");
